@@ -1,0 +1,246 @@
+﻿@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+:root {
+    --lyon-violet: #5b4b8a;
+    --lyon-cyan: #5dd9d2;
+    --lyon-blue: #0b3d5b;
+    --lyon-violet-dark: #3f3466;
+}
+
+.bg-lyon-gradient {
+    background-image: linear-gradient(135deg, var(--lyon-violet-dark) 0%, var(--lyon-violet) 45%, var(--lyon-cyan) 100%);
+}
+
+.card {
+    background: #fff;
+    border-radius: 0.75rem;
+    box-shadow: 0 8px 24px rgba(11, 61, 91, 0.08);
+}
+
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    border-radius: 0.75rem;
+    padding: 0.6rem 1rem;
+    font-weight: 600;
+    color: #fff;
+    background: var(--lyon-violet);
+    transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+    background: var(--lyon-violet-dark);
+}
+
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    border-radius: 0.75rem;
+    padding: 0.6rem 1rem;
+    font-weight: 600;
+    color: var(--lyon-blue);
+    background: #e6f5f7;
+    transition: background-color 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background: #cfecef;
+}
+
+.input {
+    width: 100%;
+    border-radius: 0.75rem;
+    border: 1px solid #d1d5db;
+    padding: 0.6rem 0.75rem;
+    outline: none;
+}
+
+.input:focus {
+    border-color: var(--lyon-violet);
+    box-shadow: 0 0 0 3px rgba(91, 75, 138, 0.15);
+}
+
+.label {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: #334155;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 9999px;
+    padding: 0.2rem 0.7rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.badge-success {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.badge-warning {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.badge-danger {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.badge-muted {
+    background: #e5e7eb;
+    color: #374151;
+}
+
+.table-head {
+    background: #f1f5f9;
+    color: #334155;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.kpi-value {
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--lyon-blue);
+}
+
+.auth-shell {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 15% 25%, rgba(93, 217, 210, 0.25) 0%, rgba(93, 217, 210, 0) 45%),
+        radial-gradient(circle at 85% 80%, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0) 50%),
+        linear-gradient(140deg, #3b2d5f 0%, #5c337f 48%, #7f3fa0 100%);
+}
+
+.auth-grid {
+    width: min(1050px, calc(100% - 2rem));
+    display: grid;
+    grid-template-columns: 1fr;
+    border-radius: 1.25rem;
+    overflow: hidden;
+    box-shadow: 0 22px 60px rgba(13, 15, 40, 0.35);
+}
+
+@media (min-width: 1024px) {
+    .auth-grid {
+        grid-template-columns: 1.05fr 0.95fr;
+    }
+}
+
+.auth-brand {
+    position: relative;
+    padding: 2rem;
+    background:
+        linear-gradient(165deg, rgba(92, 51, 127, 0.95) 0%, rgba(63, 52, 102, 0.92) 65%, rgba(11, 61, 91, 0.9) 100%);
+    color: #fff;
+}
+
+.auth-brand::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(93, 217, 210, 0.28) 0%, transparent 32%),
+        radial-gradient(circle at 80% 72%, rgba(255, 255, 255, 0.14) 0%, transparent 38%);
+    pointer-events: none;
+}
+
+.auth-brand-content {
+    position: relative;
+    z-index: 1;
+}
+
+.auth-logo-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.auth-logo-wrap img {
+    width: 56px;
+    height: 56px;
+    border-radius: 0.9rem;
+    background: rgba(255, 255, 255, 0.16);
+    padding: 0.35rem;
+}
+
+.auth-title {
+    margin: 0;
+    font-family: Lato, 'Trebuchet MS', sans-serif;
+    font-size: clamp(1.7rem, 3.2vw, 2.25rem);
+    font-weight: 900;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.auth-tagline {
+    margin-top: 0.7rem;
+    font-family: Lato, 'Trebuchet MS', sans-serif;
+    font-size: 1rem;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.auth-badges {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+}
+
+.auth-pill {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.14);
+    padding: 0.25rem 0.7rem;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.auth-quote {
+    margin-top: 1.5rem;
+    border-left: 3px solid rgba(93, 217, 210, 0.9);
+    padding-left: 0.9rem;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.auth-panel {
+    background: #fdfdff;
+    padding: 2rem;
+}
+
+.auth-panel h2 {
+    margin: 0;
+    color: #2f3556;
+    font-size: 1.35rem;
+    font-weight: 800;
+}
+
+.auth-panel p {
+    margin-top: 0.4rem;
+    color: #64748b;
+    font-size: 0.92rem;
+}
