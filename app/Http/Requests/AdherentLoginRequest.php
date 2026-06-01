@@ -2,10 +2,13 @@
 
 namespace App\Http\Requests;
 
+use App\Http\Requests\Concerns\ThrottlesLoginAttempts;
 use Illuminate\Foundation\Http\FormRequest;
 
 class AdherentLoginRequest extends FormRequest
 {
+    use ThrottlesLoginAttempts;
+
     public function authorize(): bool
     {
         return true;

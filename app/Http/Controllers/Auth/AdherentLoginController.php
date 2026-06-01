@@ -24,15 +24,20 @@ class AdherentLoginController extends Controller
 
     public function store(AdherentLoginRequest $request)
     {
+        $request->ensureIsNotRateLimited();
+
         $credentials = $request->safe()->only(['email', 'password']);
         $credentials['statut'] = 'actif';
 
         if (! Auth::guard('adherent')->attempt($credentials, $request->boolean('remember'))) {
+            $request->hitRateLimiter();
+
             return back()
-                ->withErrors(['email' => 'Identifiants adherent invalides ou compte archive.'])
+                ->withErrors(['email' => 'Identifiants invalides.'])
                 ->onlyInput('email');
         }
 
+        $request->clearRateLimiter();
         $request->session()->regenerate();
 
         return redirect()->route('adherent.dashboard');

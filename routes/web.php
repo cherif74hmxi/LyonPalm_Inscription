@@ -9,8 +9,54 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\CertificatMedicalController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PaiementController;
+use App\Http\Middleware\ValidateCsrfToken;
+use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
+use Illuminate\Cookie\Middleware\EncryptCookies;
+use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Session\Middleware\StartSession;
+use Illuminate\View\Middleware\ShareErrorsFromSession;
+
+Route::get('/robots.txt', function () {
+    $baseUrl = rtrim((string) config('app.url'), '/');
+
+    return response("User-agent: *\nDisallow: /dashboard\nDisallow: /adherents\nDisallow: /certificats\nDisallow: /adhesions\nDisallow: /password\nSitemap: {$baseUrl}/sitemap.xml\n", 200)
+        ->header('Content-Type', 'text/plain; charset=UTF-8')
+        ->header('Cache-Control', 'public, max-age=3600');
+})->withoutMiddleware([
+    EncryptCookies::class,
+    AddQueuedCookiesToResponse::class,
+    StartSession::class,
+    ShareErrorsFromSession::class,
+    ValidateCsrfToken::class,
+    PreventRequestForgery::class,
+]);
+
+Route::get('/sitemap.xml', function () {
+    $baseUrl = rtrim((string) config('app.url'), '/');
+    $today = now()->toDateString();
+    $urls = collect([
+        '/',
+        '/login',
+        '/espace-adherent/login',
+    ])->map(fn (string $path): string => sprintf(
+        "    <url><loc>%s</loc><lastmod>%s</lastmod></url>",
+        e($baseUrl.$path),
+        $today,
+    ))->implode("\n");
+
+    return response("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n{$urls}\n</urlset>\n", 200)
+        ->header('Content-Type', 'application/xml; charset=UTF-8')
+        ->header('Cache-Control', 'public, max-age=3600');
+})->withoutMiddleware([
+    EncryptCookies::class,
+    AddQueuedCookiesToResponse::class,
+    StartSession::class,
+    ShareErrorsFromSession::class,
+    ValidateCsrfToken::class,
+    PreventRequestForgery::class,
+]);
 
 Route::get('/', function () {
     if (Auth::guard('web')->check()) {

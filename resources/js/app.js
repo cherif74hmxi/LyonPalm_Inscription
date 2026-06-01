@@ -1,4 +1,1 @@
-﻿import Alpine from 'alpinejs';
-
-window.Alpine = Alpine;
-Alpine.start();
+// Application scripts can be added here when the UI needs JavaScript.

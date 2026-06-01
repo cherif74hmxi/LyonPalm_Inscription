@@ -24,14 +24,19 @@ class LoginController extends Controller
 
     public function store(LoginRequest $request)
     {
+        $request->ensureIsNotRateLimited();
+
         $credentials = $request->safe()->only(['email', 'password']);
 
         if (! Auth::attempt($credentials, $request->boolean('remember'))) {
+            $request->hitRateLimiter();
+
             return back()
                 ->withErrors(['email' => 'Identifiants invalides.'])
                 ->onlyInput('email');
         }
 
+        $request->clearRateLimiter();
         $request->session()->regenerate();
 
         return redirect()->route('dashboard');

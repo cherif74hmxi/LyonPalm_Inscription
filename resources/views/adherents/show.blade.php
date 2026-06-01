@@ -3,7 +3,7 @@
 @section('title', $adherent->nom_complet)
 
 @section('content')
-    <div x-data="{ confirmArchive: false }" class="space-y-4">
+    <div class="space-y-4">
         <section class="card p-5">
             <div class="flex flex-wrap items-start justify-between gap-3">
                 <div>
@@ -15,7 +15,19 @@
                     <a href="{{ route('adherents.edit', $adherent) }}" class="btn-secondary">Modifier</a>
 
                     @if ($adherent->statut === 'actif')
-                        <button type="button" class="btn-primary" @click="confirmArchive = true">Archiver</button>
+                        <details class="relative">
+                            <summary class="btn-primary cursor-pointer list-none">Archiver</summary>
+                            <div class="absolute right-0 z-20 mt-2 w-80 max-w-[calc(100vw-2rem)] rounded-xl border border-slate-200 bg-white p-4 text-slate-900 shadow-2xl">
+                                <h3 class="text-base font-bold">Confirmer archivage</h3>
+                                <p class="mt-2 text-sm text-slate-600">Voulez-vous vraiment archiver cet adherent ? Aucune suppression definitive ne sera faite.</p>
+
+                                <form method="POST" action="{{ route('adherents.destroy', $adherent) }}" class="mt-4 flex justify-end">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn-primary">Confirmer</button>
+                                </form>
+                            </div>
+                        </details>
                     @else
                         <form method="POST" action="{{ route('adherents.restore', $adherent) }}">
                             @csrf
@@ -115,21 +127,5 @@
                 @endforelse
             </div>
         </section>
-
-        <div x-show="confirmArchive" x-cloak class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 p-4">
-            <div class="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl">
-                <h3 class="text-lg font-bold">Confirmer archivage</h3>
-                <p class="mt-2 text-sm text-slate-600">Voulez-vous vraiment archiver cet adherent ? Aucune suppression definitive ne sera faite.</p>
-
-                <div class="mt-5 flex justify-end gap-2">
-                    <button type="button" class="btn-secondary" @click="confirmArchive = false">Annuler</button>
-                    <form method="POST" action="{{ route('adherents.destroy', $adherent) }}">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn-primary">Confirmer</button>
-                    </form>
-                </div>
-            </div>
-        </div>
     </div>
 @endsection

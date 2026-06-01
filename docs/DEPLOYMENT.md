@@ -46,8 +46,19 @@ DB_USERNAME=ton_user
 DB_PASSWORD=ton_password
 
 SESSION_DRIVER=database
+SESSION_SECURE_COOKIE=true
+SESSION_HTTP_ONLY=true
+SESSION_SAME_SITE=lax
 CACHE_STORE=database
 QUEUE_CONNECTION=database
+
+LOGIN_MAX_ATTEMPTS=5
+LOGIN_DECAY_SECONDS=60
+
+SECURITY_HSTS_ENABLED=true
+SECURITY_HSTS_MAX_AGE=2592000
+SECURITY_HSTS_INCLUDE_SUBDOMAINS=false
+SECURITY_HSTS_PRELOAD=false
 ```
 
 Puis:
@@ -73,6 +84,8 @@ sudo chmod -R 775 /var/www/LyonPalmInscription/storage /var/www/LyonPalmInscript
 Exemple fichier `/etc/nginx/sites-available/lyonpalme`:
 
 ```nginx
+server_tokens off;
+
 server {
     listen 80;
     server_name ton-domaine.tld www.ton-domaine.tld;
@@ -80,8 +93,28 @@ server {
     root /var/www/LyonPalmInscription/public;
     index index.php;
 
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+    add_header Permissions-Policy "accelerometer=(), autoplay=(), camera=(), encrypted-media=(), fullscreen=(self), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()" always;
+    add_header Cross-Origin-Resource-Policy "same-origin" always;
+    add_header Strict-Transport-Security "max-age=2592000" always;
+
     location / {
         try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location ^~ /build/assets/ {
+        try_files $uri =404;
+        add_header Cache-Control "public, max-age=31536000, immutable" always;
+        add_header X-Content-Type-Options "nosniff" always;
+        add_header Cross-Origin-Resource-Policy "same-origin" always;
+    }
+
+    location = /logo.svg {
+        try_files $uri =404;
+        add_header Cache-Control "public, max-age=86400" always;
+        add_header X-Content-Type-Options "nosniff" always;
+        add_header Cross-Origin-Resource-Policy "same-origin" always;
     }
 
     location ~ \.php$ {
@@ -89,6 +122,7 @@ server {
         fastcgi_pass unix:/run/php/php8.3-fpm.sock;
         fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
         include fastcgi_params;
+        fastcgi_hide_header X-Powered-By;
     }
 
     location ~ /\.(?!well-known).* {
@@ -96,6 +130,15 @@ server {
     }
 }
 ```
+
+Pour masquer les versions cote serveur, verifier aussi:
+
+```bash
+sudo sh -c 'printf "expose_php = Off\n" > /etc/php/8.3/fpm/conf.d/99-security.ini'
+sudo systemctl reload php8.3-fpm
+```
+
+`server_tokens off;` retire la version Nginx du header `Server`. La suppression complete du nom `nginx` necessite un build ou module tiers Nginx et sort du perimetre Laravel.
 
 Activation:
 
