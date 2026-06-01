@@ -1,15 +1,15 @@
 ﻿@extends('layouts.app')
 
-@section('title', 'Nouvel adherent')
+@section('title', 'Nouvel adhérent')
 
 @section('content')
     <section class="mb-4">
-        <h1 class="text-2xl font-bold">Nouvel adherent</h1>
-        <p class="text-sm text-slate-500">Formulaire unique avec sections groupees.</p>
+        <h1 class="text-2xl font-bold">Nouvel adhérent</h1>
+        <p class="text-sm text-slate-500">Formulaire unique avec sections groupées.</p>
     </section>
 
     @include('adherents._form', [
         'action' => route('adherents.store'),
-        'submitLabel' => 'Creer adherent',
+        'submitLabel' => 'Créer l\'adhérent',
     ])
 @endsection

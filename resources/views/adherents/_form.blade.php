@@ -9,14 +9,14 @@
     @endif
 
     <section class="card p-5">
-        <h2 class="mb-4 text-lg font-semibold">Identite</h2>
+        <h2 class="mb-4 text-lg font-semibold">Identité</h2>
         <div class="grid gap-4 md:grid-cols-2">
             <div>
                 <label class="label" for="nom">Nom</label>
                 <input id="nom" name="nom" class="input" value="{{ old('nom', $adherent->nom ?? '') }}" required />
             </div>
             <div>
-                <label class="label" for="prenom">Prenom</label>
+                <label class="label" for="prenom">Prénom</label>
                 <input id="prenom" name="prenom" class="input" value="{{ old('prenom', $adherent->prenom ?? '') }}" required />
             </div>
             <div>
@@ -26,7 +26,7 @@
             <div>
                 <label class="label" for="sexe">Sexe</label>
                 <select id="sexe" name="sexe" class="input">
-                    <option value="">Selectionner</option>
+                    <option value="">Sélectionner</option>
                     @foreach (['M', 'F', 'Autre'] as $value)
                         <option value="{{ $value }}" @selected(old('sexe', $adherent->sexe ?? '') === $value)>{{ $value }}</option>
                     @endforeach
@@ -44,7 +44,7 @@
     </section>
 
     <section class="card p-5">
-        <h2 class="mb-4 text-lg font-semibold">Coordonnees</h2>
+        <h2 class="mb-4 text-lg font-semibold">Coordonnées</h2>
         <div class="grid gap-4 md:grid-cols-2">
             <div class="md:col-span-2">
                 <label class="label" for="adresse">Adresse</label>
@@ -59,29 +59,29 @@
                 <input id="ville" name="ville" class="input" value="{{ old('ville', $adherent->ville ?? '') }}" required />
             </div>
             <div>
-                <label class="label" for="telephone">Telephone fixe</label>
+                <label class="label" for="telephone">Téléphone fixe</label>
                 <input id="telephone" name="telephone" class="input" value="{{ old('telephone', $adherent->telephone ?? '') }}" />
             </div>
         </div>
     </section>
 
     <section class="card p-5">
-        <h2 class="mb-4 text-lg font-semibold">Contact urgence</h2>
+        <h2 class="mb-4 text-lg font-semibold">Contact d'urgence</h2>
         <div class="grid gap-4 md:grid-cols-2">
             <div>
                 <label class="label" for="contact_urgence_nom">Nom</label>
                 <input id="contact_urgence_nom" name="contact_urgence_nom" class="input" value="{{ old('contact_urgence_nom', $adherent->contact_urgence_nom ?? '') }}" required />
             </div>
             <div>
-                <label class="label" for="contact_urgence_telephone">Telephone</label>
+                <label class="label" for="contact_urgence_telephone">Téléphone</label>
                 <input id="contact_urgence_telephone" name="contact_urgence_telephone" class="input" value="{{ old('contact_urgence_telephone', $adherent->contact_urgence_telephone ?? '') }}" required />
             </div>
         </div>
     </section>
 
     <section class="card p-5">
-        <h2 class="mb-1 text-lg font-semibold">Representant legal (si mineur)</h2>
-        <p class="mb-4 text-sm text-slate-500">Remplir ces informations si l adherent a moins de 18 ans.</p>
+        <h2 class="mb-1 text-lg font-semibold">Représentant légal (si mineur)</h2>
+        <p class="mb-4 text-sm text-slate-500">Remplir ces informations si l'adhérent a moins de 18 ans.</p>
 
         <div class="grid gap-4 md:grid-cols-2">
             <div>
@@ -89,11 +89,11 @@
                 <input id="representant_nom" name="representant_nom" class="input" value="{{ old('representant_nom', $adherent->representantLegal->nom ?? '') }}" />
             </div>
             <div>
-                <label class="label" for="representant_prenom">Prenom</label>
+                <label class="label" for="representant_prenom">Prénom</label>
                 <input id="representant_prenom" name="representant_prenom" class="input" value="{{ old('representant_prenom', $adherent->representantLegal->prenom ?? '') }}" />
             </div>
             <div>
-                <label class="label" for="representant_telephone">Telephone</label>
+                <label class="label" for="representant_telephone">Téléphone</label>
                 <input id="representant_telephone" name="representant_telephone" class="input" value="{{ old('representant_telephone', $adherent->representantLegal->telephone ?? '') }}" />
             </div>
             <div>
@@ -115,7 +115,7 @@
         <h2 class="mb-4 text-lg font-semibold">Photo</h2>
 
         @if ($editing && $adherent->photo)
-            <img src="{{ asset('storage/'.$adherent->photo) }}" alt="Photo adherent" class="mb-3 h-24 w-24 rounded-xl object-cover" />
+            <img src="{{ asset('storage/'.$adherent->photo) }}" alt="Photo de l'adhérent" class="mb-3 h-24 w-24 rounded-xl object-cover" />
         @endif
 
         <input type="file" name="photo" accept="image/*" class="input" />
@@ -125,7 +125,7 @@
         <h2 class="mb-4 text-lg font-semibold">Consentement RGPD</h2>
         <label class="flex items-start gap-3 text-sm text-slate-700">
             <input type="checkbox" name="rgpd_accepte" value="1" class="mt-0.5 rounded border-slate-300" @checked(old('rgpd_accepte', $adherent->rgpd_accepte ?? false)) {{ $editing ? '' : 'required' }} />
-            <span>Je confirme le consentement de l adherent pour le traitement des donnees dans le cadre des inscriptions.</span>
+            <span>Je confirme le consentement de l'adhérent pour le traitement des données dans le cadre des inscriptions.</span>
         </label>
     </section>
 

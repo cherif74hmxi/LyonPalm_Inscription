@@ -1,15 +1,15 @@
 @extends('layouts.auth')
 
-@section('title', 'Connexion adherent')
-@section('panel_title', 'Espace adherent')
-@section('panel_description', 'Connexion a votre suivi personnel d inscription.')
+@section('title', 'Connexion adhérent')
+@section('panel_title', 'Espace adhérent')
+@section('panel_description', "Connexion à votre suivi personnel d'inscription.")
 
 @section('content')
     <form method="POST" action="{{ route('adherent.login.store') }}" class="space-y-5">
         @csrf
 
         <div>
-            <label class="label" for="email">Email adherent</label>
+            <label class="label" for="email">Email adhérent</label>
             <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus class="input" placeholder="adherent01@lyonpalme.test" />
         </div>
 
@@ -23,13 +23,13 @@
                 <input type="checkbox" name="remember" value="1" class="rounded border-slate-300" {{ old('remember') ? 'checked' : '' }} />
                 Se souvenir de moi
             </label>
-            <span class="text-slate-400">Acces adherent</span>
+            <span class="text-slate-400">Accès adhérent</span>
         </div>
 
-        <button type="submit" class="btn-primary w-full py-3">Se connecter a mon espace</button>
+        <button type="submit" class="btn-primary w-full py-3">Se connecter à mon espace</button>
 
         <p class="text-center text-sm text-slate-500">
-            Vous etes secretaire/admin ?
+            Vous êtes secrétaire/admin ?
             <a href="{{ route('login') }}" class="font-semibold text-slate-700 hover:text-slate-900">Connexion interne</a>
         </p>
     </form>

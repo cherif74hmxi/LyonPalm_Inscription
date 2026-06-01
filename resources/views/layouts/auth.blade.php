@@ -14,14 +14,14 @@
                     <img src="{{ asset('logo.svg') }}" alt="Logo Lyon Palme" />
                     <div>
                         <p class="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-100/90">Monopalme Lyon</p>
-                        <p class="text-sm text-white/85">Saint-Fons - Venissieux</p>
+                        <p class="text-sm text-white/85">Saint-Fons - Vénissieux</p>
                     </div>
                 </div>
 
                 <h1 class="auth-title">Lyon Palme</h1>
                 <p class="auth-tagline">
-                    Bienvenue sur l espace interne du club.
-                    Une interface simple pour gerer les inscriptions, certificats medicaux et cotisations.
+                    Bienvenue sur l'espace interne du club.
+                    Une interface simple pour gérer les inscriptions, certificats médicaux et cotisations.
                 </p>
 
                 <div class="auth-badges">
@@ -31,7 +31,7 @@
                 </div>
 
                 <p class="auth-quote">
-                    Toute l actu du club en live sur les reseaux sociaux et les bassins.
+                    Toute l'actu du club en direct sur les réseaux sociaux et dans les bassins.
                 </p>
             </div>
         </aside>
@@ -40,8 +40,8 @@
                 <div class="mb-6 flex items-center gap-3">
                     <img src="{{ asset('logo.svg') }}" alt="Logo Lyon Palme" class="h-10 w-10 rounded-xl border border-slate-200 bg-white p-1" />
                     <div>
-                        <h2>@yield('panel_title', 'Espace secretaire')</h2>
-                        <p>@yield('panel_description', 'Connexion securisee a l application de gestion.')</p>
+                        <h2>@yield('panel_title', 'Espace secrétaire')</h2>
+                        <p>@yield('panel_description', "Connexion sécurisée à l'application de gestion.")</p>
                     </div>
                 </div>
 

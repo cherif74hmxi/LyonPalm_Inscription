@@ -1,8 +1,8 @@
 ﻿@extends('layouts.auth')
 
 @section('title', 'Connexion')
-@section('panel_title', 'Espace secretaire')
-@section('panel_description', 'Connexion securisee a l application de gestion.')
+@section('panel_title', 'Espace secrétaire')
+@section('panel_description', "Connexion sécurisée à l'application de gestion.")
 
 @section('content')
     <form method="POST" action="{{ route('login') }}" class="space-y-5">
@@ -29,8 +29,8 @@
         <button type="submit" class="btn-primary w-full py-3">Se connecter</button>
 
         <p class="text-center text-sm text-slate-500">
-            Vous etes adherent ?
-            <a href="{{ route('adherent.login') }}" class="font-semibold text-slate-700 hover:text-slate-900">Acceder a mon espace</a>
+            Vous êtes adhérent ?
+            <a href="{{ route('adherent.login') }}" class="font-semibold text-slate-700 hover:text-slate-900">Accéder à mon espace</a>
         </p>
     </form>
 @endsection

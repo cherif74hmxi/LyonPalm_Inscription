@@ -14,7 +14,7 @@
                     <img src="{{ asset('logo.svg') }}" alt="Logo Lyon Palme" class="h-8 w-auto" />
                     <div>
                         <h1 class="text-2xl font-black sm:text-3xl">Lyon Palme</h1>
-                        <p class="text-sm text-white/90">Gestion des inscriptions et des adhesions</p>
+                        <p class="text-sm text-white/90">Gestion des inscriptions et des adhésions</p>
                     </div>
                 </div>
             </div>
@@ -22,20 +22,20 @@
             <div class="grid gap-4 p-6 sm:grid-cols-2 sm:gap-6 sm:p-8">
                 <a href="{{ route('adherent.login') }}" class="group rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md">
                     <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Choix 1</p>
-                    <h2 class="mt-2 text-xl font-bold text-slate-900">Je suis adherent</h2>
+                    <h2 class="mt-2 text-xl font-bold text-slate-900">Je suis adhérent</h2>
                     <p class="mt-2 text-sm text-slate-600">
-                        Consulter mon dossier, mon certificat medical et l etat de ma cotisation.
+                        Consulter mon dossier, mon certificat médical et l'état de ma cotisation.
                     </p>
-                    <p class="mt-4 font-semibold text-slate-800 group-hover:text-slate-900">Acceder a l espace adherent</p>
+                    <p class="mt-4 font-semibold text-slate-800 group-hover:text-slate-900">Accéder à l'espace adhérent</p>
                 </a>
 
                 <a href="{{ route('login') }}" class="group rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md">
                     <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Choix 2</p>
-                    <h2 class="mt-2 text-xl font-bold text-slate-900">Je suis secretaire / admin</h2>
+                    <h2 class="mt-2 text-xl font-bold text-slate-900">Je suis secrétaire / admin</h2>
                     <p class="mt-2 text-sm text-slate-600">
-                        Gerer les adherents, certificats, cotisations et paiements du club.
+                        Gérer les adhérents, certificats, cotisations et paiements du club.
                     </p>
-                    <p class="mt-4 font-semibold text-slate-800 group-hover:text-slate-900">Acceder a l espace interne</p>
+                    <p class="mt-4 font-semibold text-slate-800 group-hover:text-slate-900">Accéder à l'espace interne</p>
                 </a>
             </div>
         </section>

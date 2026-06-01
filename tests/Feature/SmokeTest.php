@@ -20,8 +20,8 @@ class SmokeTest extends TestCase
         $response = $this->get('/');
 
         $response->assertOk();
-        $response->assertSee('Je suis adherent');
-        $response->assertSee('Je suis secretaire / admin');
+        $response->assertSee('Je suis adhérent');
+        $response->assertSee('Je suis secrétaire / admin');
     }
 
     public function test_authenticated_user_can_see_dashboard(): void
@@ -31,7 +31,7 @@ class SmokeTest extends TestCase
         $response = $this->actingAs($user)->get(route('dashboard'));
 
         $response->assertOk();
-        $response->assertSee('Dashboard');
+        $response->assertSee('Tableau de bord');
     }
 
     public function test_user_can_create_adherent(): void
@@ -81,7 +81,7 @@ class SmokeTest extends TestCase
         $response = $this->actingAs($user)->get(route('certificats.index'));
 
         $response->assertOk();
-        $response->assertSee('Certificats medicaux');
+        $response->assertSee('Certificats médicaux');
     }
 
     public function test_user_can_add_paiement(): void
@@ -151,6 +151,6 @@ class SmokeTest extends TestCase
 
         $dashboardResponse = $this->get(route('adherent.dashboard'));
         $dashboardResponse->assertOk();
-        $dashboardResponse->assertSee('Espace adherent');
+        $dashboardResponse->assertSee('Espace adhérent');
     }
 }

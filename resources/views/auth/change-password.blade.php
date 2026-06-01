@@ -17,7 +17,7 @@
             <div>
                 <label class="label" for="password">Nouveau mot de passe</label>
                 <input id="password" type="password" name="password" required class="input" />
-                <p class="mt-1 text-xs text-slate-500">Minimum 12 caracteres avec majuscule, minuscule, chiffre et symbole.</p>
+                <p class="mt-1 text-xs text-slate-500">Minimum 12 caractères avec majuscule, minuscule, chiffre et symbole.</p>
             </div>
 
             <div>
@@ -26,7 +26,7 @@
             </div>
 
             <div class="pt-2">
-                <button type="submit" class="btn-primary">Mettre a jour</button>
+                <button type="submit" class="btn-primary">Mettre à jour</button>
             </div>
         </form>
     </section>

@@ -1,6 +1,6 @@
 ﻿@extends('layouts.app')
 
-@section('title', 'Ajouter paiement')
+@section('title', 'Ajouter un paiement')
 
 @section('content')
     <section class="mb-4">
@@ -15,7 +15,7 @@
                 <p>{{ number_format((float) $adhesion->montant_total, 2, ',', ' ') }} EUR</p>
             </div>
             <div>
-                <p class="text-xs font-semibold uppercase tracking-wide text-slate-400">Paye</p>
+                <p class="text-xs font-semibold uppercase tracking-wide text-slate-400">Payé</p>
                 <p>{{ number_format((float) $adhesion->montant_paye, 2, ',', ' ') }} EUR</p>
             </div>
             <div>
@@ -45,7 +45,7 @@
             </div>
 
             <div>
-                <label class="label" for="date_paiement">Date paiement</label>
+                <label class="label" for="date_paiement">Date de paiement</label>
                 <input id="date_paiement" type="date" name="date_paiement" value="{{ old('date_paiement', now()->format('Y-m-d')) }}" class="input" required />
             </div>
 
@@ -55,7 +55,7 @@
             </div>
 
             <div class="flex gap-2">
-                <button type="submit" class="btn-primary">Enregistrer paiement</button>
+                <button type="submit" class="btn-primary">Enregistrer le paiement</button>
                 <a href="{{ route('adhesions.show', $adhesion) }}" class="btn-secondary">Annuler</a>
             </div>
         </form>
